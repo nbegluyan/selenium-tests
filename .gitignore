@@ -2,3 +2,4 @@
 /.idea/
 /target/
 /selenium-armindian-suites.iml
+/src/main/resources/drivers/
