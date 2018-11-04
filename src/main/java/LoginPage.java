@@ -1,18 +1,31 @@
 import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends BasePage {
+    @FindBy(name = "login")
+    private WebElement loginField;
+
+    @FindBy(name = "password")
+    private WebElement passField;
+
+    @FindBy(name = "commit")
+    private WebElement signIn;
+
+    @FindBy(css = "js-flash-container .flash-error")
+    private WebElement error;
 
 
-    private By loginField = By.name("login");
-    private By passField = By.name("password");
-    private By signIn = By.name("commit");
-    private By error = By.cssSelector("#js-flash-container .flash-error");
-
-    public LoginPage(WebDriver driver){
-        super(driver);
+    public LoginPage(){
+        super();
+        PageFactory.initElements(driver, this);
         driver.get(getUrl());
+    }
+    public String getUrl(){
+        return "https://github.com/login";
     }
 
     public void loginWith(String username, String password){
@@ -20,15 +33,12 @@ public class LoginPage extends BasePage {
         type(passField, password);
         click(signIn);
 
-
     }
 
     public boolean isErrorMessageDisplayed(){
 
-        return driver.findElement(error).isDisplayed();
+        return isDisplayed(error);
     }
 
-    public String getUrl() {
-        return "https://github.com/login";
-    }
+
 }

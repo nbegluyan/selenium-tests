@@ -3,14 +3,31 @@ package base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.LoadableComponent;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 
-public abstract class BasePage {
+public abstract class BasePage <T extends LoadableComponent<T>> extends LoadableComponent<T>{
     protected WebDriver driver;
-    public  BasePage(WebDriver driver){
-        this.driver = driver;
+
+    public  BasePage(){
+
+        this.driver = DriverHelper.getDriver();
+        PageFactory.initElements(driver, this);
+    }
+
+    @Override
+    protected void load() {
+
+    }
+
+    @Override
+    protected void isLoaded() throws Error {
+        driver.getCurrentUrl().equals(getUrl());
+
     }
 
     public abstract String getUrl();
@@ -23,7 +40,7 @@ public abstract class BasePage {
         type(find(location), text);
     }
 
-    private WebElement find(By location) {
+    public WebElement find(By location) {
         return driver.findElement(location);
     }
 
@@ -43,4 +60,27 @@ public abstract class BasePage {
     public void click(By location){
         click(find(location));
     }
+
+    public boolean isDisplayed(WebElement element) {
+        try {
+            return element.isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+        public boolean isDisplayed(By location){
+            try{
+                return find(location).isDisplayed();
+            } catch (NoSuchElementException e){
+                return false;
+            }
+
+
+
+
+    }
+
+
+
 }

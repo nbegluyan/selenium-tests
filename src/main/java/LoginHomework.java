@@ -1,7 +1,8 @@
+import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginHomework {
+public class LoginHomework extends BasePage {
 
     public WebDriver driver;
     public By usernameField = By.id("username");
@@ -10,10 +11,16 @@ public class LoginHomework {
     public By errorMessage = By.id("flash");
 
 
-    public LoginHomework(WebDriver driver){
-        this.driver = driver;
-        driver.get("http://the-internet.herokuapp.com/login");
+    public LoginHomework(){
+        super();
+        driver.get(getUrl());
     }
+
+    public String getUrl(){
+        return "https://teamviewer-iot.com";
+    }
+
+
 
     public void loginAction(String username, String password){
 
