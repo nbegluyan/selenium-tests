@@ -1,8 +1,12 @@
 package base;
 
+import api.Client;
+import com.google.gson.JsonObject;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 
@@ -15,7 +19,7 @@ public abstract class BasePage <T extends LoadableComponent<T>> extends Loadable
 
     public  BasePage(){
 
-        this.driver = DriverHelper.getDriver();
+        this.driver = DriverHelper.get().getDriver();
         PageFactory.initElements(driver, this);
     }
 
@@ -77,9 +81,13 @@ public abstract class BasePage <T extends LoadableComponent<T>> extends Loadable
             }
 
 
-
+    }
+    public Actions getActions(){
+        return new Actions(driver);
 
     }
+
+
 
 
 

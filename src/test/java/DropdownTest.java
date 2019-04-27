@@ -1,13 +1,10 @@
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class DropdownTest {
+public class DropdownTest extends BaseSelenium {
 
 
     @Test
-    public void successLogin() {
+    public void dropDown() {
         DropdownPage dropdownPage = new DropdownPage();
         dropdownPage.selectOptionCustom("Option 2");
 

@@ -1,27 +1,15 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import base.DriverHelper;
 import org.testng.annotations.Test;
-
-import static base.DriverHelper.getDriver;
-import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
-
-
-public class LoginTest  {
+public class LoginTest extends BaseSelenium {
 
 
     @Test
     public void successLogin() {
 
-        getDriver().get("https://google.com");
+        DriverHelper.get().getDriver().get("https://google.com");
 
-        assertTrue(getDriver().getCurrentUrl().contains("https://www.google.com"),
+        assertTrue(DriverHelper.get().getDriver().getCurrentUrl().contains("https://www.google.com"),
                 "The page was not load correctly");
 
     }

@@ -1,10 +1,13 @@
 import base.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
+
+import static org.testng.Assert.assertTrue;
 
 public class ElementalSeleniumPage extends BasePage {
 
@@ -52,7 +55,7 @@ public class ElementalSeleniumPage extends BasePage {
 
     }
 
-    private boolean isSelected(WebElement checkbox) {
+    public boolean isSelected(WebElement checkbox) {
         return true;
     }
 
@@ -61,6 +64,14 @@ public class ElementalSeleniumPage extends BasePage {
             this.checkbox.click();
         }
     }
+
+   /* public void pageNavigate(){
+        driver.navigate().to("http://elementalselenium.com/subscribe/confirm?drip_email=www%40ttt.vo&drip_subscriber_id=niaxqtgx6ghtyqvoomar");
+        driver.findElement(By.cssSelector(".subheader"));
+        assertTrue(driver.getCurrentUrl().contains("http://elementalselenium.com/subscribe/confirm?drip_email=www%40ttt.vo&drip_subscriber_id=niaxqtgx6ghtyqvoomar"),"page was not opened");
+    }*/
+
+
 }
 
 

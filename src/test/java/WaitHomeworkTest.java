@@ -3,7 +3,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 
-public class WaitHomeworkTest  {
+public class WaitHomeworkTest extends BaseSelenium {
 
     @Test
     public void loading(){
