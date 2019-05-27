@@ -21,12 +21,12 @@ import java.lang.reflect.Method;
 public class BaseSelenium implements IHookable {
     private static final Logger LOGGER = Logger.getLogger("BaseSelenium");
     private static WebDriver driver = DriverHelper.get().getDriver();
-    @AfterMethod
+   /* @AfterMethod
     public void tearDown(){
        // System.out.println("Closing browser for method " + method.getName());
         DriverHelper.get().quitDriver(DriverHelper.get().getDriver());
     }
-
+*/
     public void login(String username, String password) throws IOException {
         JsonObject jsonObject = Client.getAccessToken(username, password);
         new TaigaLoginPage();

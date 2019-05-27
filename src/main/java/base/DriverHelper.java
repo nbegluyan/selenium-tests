@@ -2,11 +2,15 @@ package base;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.logging.LoggingPreferences;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Level;
 
 public class DriverHelper {
     public static DriverHelper get(){
@@ -23,12 +27,16 @@ public class DriverHelper {
         if (driverThread.get() == null) {
             switch (BROWSER) {
                 case "chrome":
+                    LoggingPreferences loggingprefs = new LoggingPreferences();
+                    loggingprefs.enable(LogType.PERFORMANCE, Level.ALL);
+                    DesiredCapabilities cap = new DesiredCapabilities().chrome();
+                    cap.setCapability(CapabilityType.LOGGING_PREFS, loggingprefs);
                     System.setProperty("webdriver.chrome.driver",
                             "./src/main/resources/drivers/chromedriver-windows-32bit.exe");
                     if (Boolean.valueOf((REMOTE))) {
-                    driver = initRemoteDriver(DesiredCapabilities.chrome());
+                        driver = initRemoteDriver(cap);
                     } else{
-                        driver = new ChromeDriver();
+                        driver = new ChromeDriver(cap);
                     }
                     driverThread.set(driver);
                     break;

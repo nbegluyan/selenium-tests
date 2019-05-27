@@ -8,7 +8,7 @@ public class TeamviewerLoginTest extends BaseSelenium {
 
 
     @BeforeMethod
-    public void setup() {
+     public void setup() {
         System.setProperty("webdriver.chrome.driver",
                 "./src/main/resources/drivers/chromedriver-windows-32bit.exe");
         driver = new ChromeDriver();
